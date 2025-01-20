@@ -1,6 +1,11 @@
 const yargs = require("yargs")
 const { addNote, printNotes, removeNote } = require("./notes.controller")
 
+const express = require("express")
+
+const app = express()
+const PORT = process.env.PORT || 3000
+
 yargs.command({
   command: "add",
   describe: "add new note to list",
@@ -37,6 +42,10 @@ yargs.command({
   async handler() {
     printNotes()
   },
+})
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 })
 
 yargs.parse()
